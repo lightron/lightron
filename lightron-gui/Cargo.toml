@@ -1,0 +1,21 @@
+[package]
+name = "lightron-gui"
+version = "0.1.0"
+authors = ["lightron"]
+edition = "2018"
+build = "build.rs"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fltk = {version = "1.0.1", features = ["no-pango","system-libpng"]}
+toml = "0.5.8"
+serde_derive = "1.0.125"
+serde = "1.0.125"
+systemstat = "0.1.7"
+vlc-rs = "0.3.0"
+plotters = "0.3.0"
+plotters-bitmap = "0.3.0"
+sysinfo = "0.17.2"
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1.11"
