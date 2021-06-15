@@ -40,14 +40,14 @@ To know how to install and get started with the Lightron Web Server follow these
         ```
 * Red Hat Based Distribution
     1. Download the .rpm file by clicking here.
-    2. Open Terminal and change the directory to where the debian package has been downloaded.
+    2. Open Terminal and change the directory to where the rpm package has been downloaded.
     3. Type the below command to install the package.
         ```
         sudo dnf install ./lightron-0.1.0-1.fc33.x86_64.rpm
         ```
 * Arch Based Distribution
     1. Download the .pkg.tar.zst file by clicking here.
-    2. Open Terminal and change the directory to where the debian package has been downloaded.
+    2. Open Terminal and change the directory to where the arch package has been downloaded.
     3. Type the below command to install the package.
         ```
         sudo pacman -U ./lightron-0.1.0-1-x86_64.pkg.tar.zst
