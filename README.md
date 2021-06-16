@@ -41,6 +41,13 @@ To know how to install and get started with the Lightron Web Server follow these
 * Red Hat Based Distribution
     1. Download the .rpm file by clicking [here](https://github.com/lightron/lightron/releases/download/v0.1.0/lightron-0.1.0-1.fc33.x86_64.rpm).
     2. Open Terminal and change the directory to where the rpm package has been downloaded.
+    4. RPM Fusion repository must be added to the system by following command, Ignore If already added.
+       ```
+       sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+       ```
+       ```
+       sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+       ```
     3. Type the below command to install the package.
         ```
         sudo dnf install ./lightron-0.1.0-1.fc33.x86_64.rpm
