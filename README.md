@@ -26,34 +26,34 @@ Kudos, To all other rust based libraries/crates which have also played equal & i
 To know how to install and get started with the Lightron Web Server follow these simple steps:<br>
 
 ### Windows
-1. Download lightron_setup.exe, double click it to launch the installer, and then follow the instructions.
+1. Download [Lightron_Setup_x86-64.exe](https://github.com/lightron/lightron/releases/download/v0.1.0/Lightron_Setup_x86-64.exe), double click it to launch the installer, and then follow the instructions.
 2. You will be asked what directory to install .exe file in.
 3. The installer will create an exe icon on the desktop and a menu-item under "All Programs"..<br>
 
 ### Linux
 * Debian Based Distribution
-    1. Download the .deb file by clicking here.
+    1. Download the .deb file by clicking [here](https://github.com/lightron/lightron/releases/download/v0.1.0/lightron-0.1.0.deb).
     2. Open Terminal and change the directory to where the debian package has been downloaded.
     3. Type the below command to install the package.
         ```
         sudo apt-get install ./lightron-0.1.0.deb
         ```
 * Red Hat Based Distribution
-    1. Download the .rpm file by clicking here.
+    1. Download the .rpm file by clicking [here](https://github.com/lightron/lightron/releases/download/v0.1.0/lightron-0.1.0-1.fc33.x86_64.rpm).
     2. Open Terminal and change the directory to where the rpm package has been downloaded.
     3. Type the below command to install the package.
         ```
         sudo dnf install ./lightron-0.1.0-1.fc33.x86_64.rpm
         ```
 * Arch Based Distribution
-    1. Download the .pkg.tar.zst file by clicking here.
+    1. Download the .pkg.tar.zst file by clicking [here](https://github.com/lightron/lightron/releases/download/v0.1.0/lightron-0.1.0-1-x86_64.pkg.tar.zst).
     2. Open Terminal and change the directory to where the arch package has been downloaded.
     3. Type the below command to install the package.
         ```
         sudo pacman -U ./lightron-0.1.0-1-x86_64.pkg.tar.zst
         ```
 # Usage
-GUI usage can be found [here](gui_readme.md#usage).
+GUI usage can be found [here](lightron-gui/README.md#usage).
 
 **To start service of the web server in windows:**
 1. Using GUI
