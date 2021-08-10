@@ -6,8 +6,8 @@
   * [Installation](#installation)
     + [Windows](#windows)
     + [Linux](#linux)
+    + [Docker](#docker)
 - [Usage](#usage)
-  * [Hosting a website](#hosting-a-website)
 - [Acknowledgements](#acknowledgements)
 
 # About the Project
@@ -59,6 +59,20 @@ To know how to install and get started with the Lightron Web Server follow these
         ```
         sudo pacman -U ./lightron-0.1.0-1-x86_64.pkg.tar.zst
         ```
+### Docker
+1. Download the [Dockerfile](https://github.com/lightron/lightron/blob/main/Dockerfile).
+2. Open Terminal and change the directory to where the Dockerfile has been downloaded.
+3. Build Docker Image.
+    ```
+    docker build -t="lightron" .
+    ```
+4. Run Docker Container.
+    ```
+    docker run -d -p 80:80 -v [volume name]:/var/www -v [path to lightron.conf file on host system]:/etc/lightron.conf lightron
+    ```
+    On Windows system volume can be found at \\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes<br>
+    On Linux /var/lib/docker/volumes/
+
 # Usage
 GUI usage can be found [here](lightron-gui/README.md#usage).
 
@@ -84,6 +98,6 @@ GUI usage can be found [here](lightron-gui/README.md#usage).
     ```
     sudo systemctl start lightrond
     ```
-# Acknowledgement
+# Acknowledgements
 * [@MoAlyousef](https://github.com/MoAlyousef)
 * Amazing rust community at [here](https://discord.com/invite/yWGNDZ9F) and [here](https://discord.gg/rust-lang-community).
