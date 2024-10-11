@@ -72,7 +72,7 @@ impl MyDial {
         let value_c = value.clone();
         main_wid.draw(move |w| {
             draw::set_draw_rgb_color(230, 230, 230);
-            draw::draw_pie(w.x(), w.y(), w.w(), w.h(), 0., 180.);  
+            draw::draw_pie(w.x(), w.y(), w.w(), w.h(), 0., 180.);
             draw::set_draw_hex_color(0xb0bf1a);
             draw::draw_pie(
                 w.x(),
@@ -177,7 +177,7 @@ fn dummy_button(grp:&mut Group, frametype:enums::FrameType, framecolor:enums::Co
     grp.end();
 }
 
-fn print_get_entries(con : String, group : &mut Group) {  
+fn print_get_entries(con : String, group : &mut Group) {
 
     let (width,height) = fltk::app::screen_size();
     let config: HashMap<String, Vec<Website>> = from_str(&con).unwrap();
@@ -192,11 +192,11 @@ fn print_get_entries(con : String, group : &mut Group) {
         let mut class_entry=Group::default().with_size((width/15.36) as i32,(height/20.6) as i32).right_of(&name_entry,20).with_label(&website.name.to_string());
         dummy_button(&mut class_entry,enums::FrameType::GtkDownBox, enums::Color::from_u32(0x05f7ff));
         group.add(&class_entry);
-        
+
         let mut port_no_entry=Group::default().with_size((width/15.36) as i32,(height/20.6) as i32).right_of(&class_entry,20).with_label(&website.class.to_string());
         dummy_button(&mut port_no_entry, enums::FrameType::GtkDownBox, enums::Color::from_u32(0x05f7ff));
         group.add(&port_no_entry);
-        
+
         let mut status_entry=Group::default().with_size((width/15.36) as i32,(height/20.6) as i32).right_of(&port_no_entry,20).with_label(&website.port_no.to_string());
         dummy_button(&mut status_entry,enums::FrameType::GtkDownBox, enums::Color::from_u32(0x05f7ff));
         group.add(&status_entry);
@@ -213,7 +213,7 @@ fn read_conf() -> String {
     else {
         OpenOptions::new().read(true).write(true).create(true).open("../lightron.conf").unwrap()
     };
-    
+
     let mut con=String::new();
     file.read_to_string(&mut con).expect("Unable to read to string.");
     con
@@ -223,13 +223,13 @@ fn read_conf() -> String {
 fn main()  -> Result<(), Box<dyn Error>>  {
     let sys = System::new();
     let system = sysinfo::System::new_all();
-    if !cfg!(target_os = "windows") { 
+    if !cfg!(target_os = "windows") {
         extern "C" {
             pub fn XInitThreads() -> i32;
         }
         unsafe { XInitThreads(); }
     }
-    
+
     // INTRO //
     let intro_app = App::default();
     // Create inner window to act as embedded media player
@@ -277,7 +277,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
             intro_app.quit();
         }
     }
-    
+
     // INTRO ENDS HERE //
 
     let main_app = App::default().with_scheme(Scheme::Gleam);
@@ -353,7 +353,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
         let mut pid_print = Group::new((width*0.06)  as i32,(height*0.20) as i32,(width/7.68) as i32,(height/4.12) as i32,None).with_label(&lightron_pid.to_string());
         let _pid_str = Group::new((width*0.063)  as i32,(height*0.28) as i32,(width/7.68) as i32,(height/4.12) as i32,"Lightron is Running on\nPID");
         dummy_button(&mut pid_print,enums::FrameType::GleamDownBox, enums::Color::from_u32(0xff8c00));
-        pid_print.set_label_size(30); 
+        pid_print.set_label_size(30);
         if let Some(process) = system.get_process(lightron_pid.try_into().unwrap()) {
             let lightron_mem = process.memory();
             let lightron_cpu = process.cpu_usage() as i32;
@@ -372,7 +372,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     else{
         let mut pid_print = Group::new((width*0.06)  as i32,(height*0.20) as i32,(width/7.68) as i32,(height/4.12) as i32,"Lightron Webserver \n\nis Not started yet");
         dummy_button(&mut pid_print,enums::FrameType::GleamDownBox, enums::Color::from_u32(0xff8c00));
-        match sys.uptime() {  
+        match sys.uptime() {
             Ok(uptime) => {
                 let mut frame_header_uptime = Group::new((width*0.81)  as i32,(height*0.60) as i32,(width/7.68) as i32,(height/4.12) as i32,None).with_label(&(uptime.as_secs().to_string()+" s"));
                 let _frame_header_uptime_str = Group::new((width*0.81)  as i32,(height*0.68) as i32,(width/7.68) as i32,(height/4.12) as i32,"Uptime : ");
@@ -383,7 +383,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
             Err(x) => println!("\nUptime: error: {}", x)
         }
     }
-    match sys.memory() {   
+    match sys.memory() {
         Ok(mem) =>{
             let memo_used=&saturating_sub_bytes(mem.total, mem.free).to_string();
             let mut frame_header_class = Group::new((width*0.81)  as i32,(height*0.20) as i32,(width/7.68) as i32,(height/4.12) as i32,None).with_label(&memo_used);
@@ -400,7 +400,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     dummy_button(&mut process_print,enums::FrameType::GleamDownBox,enums::Color::from_u32(0xFCD12A));
     process_print.set_label_size(25);
 
-    
+
 
     let mut add_new_website_button = Button::new((width*0.30) as i32,(height*0.65) as i32,(width/5.12) as i32,(height/20.6) as i32,"\u{E801} \tAdd New Website");
     add_new_website_button.set_label_font(enums::Font::by_name(&icons));
@@ -417,7 +417,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     let mut cpu_dial = MyDial::new((width*0.437) as i32,(height*0.75) as i32,(width/7.68) as i32,(height/4.12) as i32, "CPU Load %",100);
     cpu_dial.set_label_size(22);
     cpu_dial.set_label_color(enums::Color::from_u32(0x797979));
-    let (tx, rx) = mpsc::channel(); // 
+    let (tx, rx) = mpsc::channel(); //
     let total_mem : f64;
     match sys.memory() {
         Ok(mem) => {
@@ -433,11 +433,11 @@ fn main()  -> Result<(), Box<dyn Error>>  {
             let mem_used = get_memory_load(&sys);
             tx.send((load,mem_used)).unwrap();
             awake();
-            // println!("Sent {},{}",load,mem_used);    
+            // println!("Sent {},{}",load,mem_used);
         }
     });
     main_tab.end();
-    // Main tab ends here // 
+    // Main tab ends here //
 
     // Statistics tab starts here //
     let mut statistics_tab = Group::new(10, 45, width as i32, height as i32, "\u{E802} \n   Statistics\t");
@@ -455,8 +455,8 @@ fn main()  -> Result<(), Box<dyn Error>>  {
         Ok(stat_img) => stat_frame.set_image(Some(stat_img)),
         Err(_) => (),
     }
-    
-    
+
+
     // CPU GRAPH //
     let mut cpu_buf = vec![0u8; ((width/2.3) as i32 as usize) * ((height/2.2) as i32 as usize) * 3]; // creates vector with all elements as zero
     let mut cpu_win = Window::default().with_size((width/2.3) as i32, (height/2.2) as i32).with_pos((width*0.03) as i32,(height*0.30) as i32);
@@ -563,7 +563,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     let mut tree = Tree::new(15, 95, (width/5.12) as i32, (height - 120.0) as i32, "");
     let mut disp = TextDisplay::default().with_size((width - 350.0) as i32,(height - 120.0) as i32).right_of(&tree, 20);
 
-   
+
 
     disp.set_buffer(text_buffer);
 
@@ -643,7 +643,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     access_toggle.set_color(enums::Color::from_u32(0x878787));
     access_toggle.set_selection_color(enums::Color::from_u32(0x147efb));
     access_toggle.clear_visible_focus();
-    
+
 
     class_toggle.set_align(enums::Align::Inside|enums::Align::Left);
     class_toggle.set_frame(enums::FrameType::RFlatBox);
@@ -673,11 +673,11 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     browse_webdocs_button.set_color(enums::Color::from_u32(0xffdc73));
     browse_key_button.set_color(enums::Color::from_u32(0xffdc73));
     browse_cert_button.set_color(enums::Color::from_u32(0xffdc73));
-    
+
 
     let mut webdocs_dialog = FileDialog::new(FileDialogType::BrowseDir);
-    let add_name_input = Input::new((new_web_width*0.50) as i32,(new_web_height*0.51) as i32,(new_web_width/12.8) as i32,(new_web_height/16.03) as i32,"Enter Name :");
-    let port_input = IntInput::default().with_size((new_web_width/12.8) as i32,(new_web_height/16.03) as i32).with_label("Enter Port Number :").below_of(&add_name_input,20);
+    let mut add_name_input = Input::new((new_web_width*0.50) as i32,(new_web_height*0.51) as i32,(new_web_width/12.8) as i32,(new_web_height/16.03) as i32,"Enter Name :");
+    let mut port_input = IntInput::default().with_size((new_web_width/12.8) as i32,(new_web_height/16.03) as i32).with_label("Enter Port Number :").below_of(&add_name_input,20);
 
     let mut push_button = Button::default().with_size((new_web_width/5.12) as i32,(new_web_height/16.03) as i32).with_label("\u{E80B}  Browse Files to be Pushed").below_of(&browse_webdocs_button,(new_web_height*0.29) as i32);
     push_button.set_label_font(enums::Font::by_name(&icons));
@@ -692,7 +692,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
 
     class_toggle.emit(s,Message::ClassToggle);
     access_toggle.emit(s,Message::AccessToggle);
-    
+
     window_add_new.end();
     /* Add new website window ends here */
 
@@ -700,7 +700,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
     let mut window_remove = Window::default().with_size(new_web_width as i32,new_web_height as i32).with_label("Remove Existing Website Dialog").center_screen();
     window_remove.begin();
     let mut rm_web_frame = Frame::default().size_of(&window_remove);
-    
+
     let rm_web_img = if cfg!(target_os = "windows") {
         JpegImage::load(&std::path::Path::new("assets\\remove_bg.jpg"))
     }
@@ -711,7 +711,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
         Ok(rm_web_img) => rm_web_frame.set_image(Some(rm_web_img)),
         Err(_) => ()
     }
-    let remove_name_input= Input::new((new_web_width*0.47) as i32,(new_web_height*0.20) as i32,(new_web_width/14.72) as i32,(new_web_height/16.03) as i32,"Name : ");
+    let mut remove_name_input= Input::new((new_web_width*0.47) as i32,(new_web_height*0.20) as i32,(new_web_width/14.72) as i32,(new_web_height/16.03) as i32,"Name : ");
     let mut search_remove = Button::new((new_web_width*0.47) as i32,(new_web_height*0.30) as i32,(new_web_width/14.72) as i32,(new_web_height/16.03) as i32,"Search");
     let mut remove = Button::new((new_web_width*0.47) as i32,(new_web_height*0.80) as i32,(new_web_width/14.72) as i32,(new_web_height/16.03) as i32,"Remove");
     remove.set_frame(enums::FrameType::GleamUpBox);
@@ -974,7 +974,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
                             "Local".to_string()
                         },
                         resource: webdocs_dialog.filename(),
-                        certificate: cert_dialog.filename(), 
+                        certificate: cert_dialog.filename(),
                         private_key: privkey_dialog.filename(),
                         port_no : port_input.value().parse::<u16>().unwrap(),
                         push_protocol_files : if class_toggle.is_toggled() {
@@ -1048,7 +1048,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
                     }
                     frames_group.clear_changed();
                 }
-                
+
                 //println!("received {},{}",load,mem_used);
                 cpu_dial.set_value(load as i32); // Dial set
                 // CPU GRAPH //
@@ -1060,7 +1060,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
                 .into_drawing_area();
                 let mut chart = cpu_cs.clone().restore(&cpu_root);
                 chart.plotting_area().fill(&WHITE).unwrap();
-                chart.configure_mesh().bold_line_style(&BLACK.mix(0.2)).light_line_style(&TRANSPARENT).draw().unwrap();    
+                chart.configure_mesh().bold_line_style(&BLACK.mix(0.2)).light_line_style(&TRANSPARENT).draw().unwrap();
                 chart.draw_series(cpu_data.iter().zip(cpu_data.iter().skip(1)).map(
                     |(&(x0, y0), &(x1, y1))| {
                         PathElement::new(
@@ -1090,7 +1090,7 @@ fn main()  -> Result<(), Box<dyn Error>>  {
                 .into_drawing_area();
                 let mut mem_chart = mem_cs.clone().restore(&mem_root);
                 mem_chart.plotting_area().fill(&WHITE).unwrap();
-                mem_chart.configure_mesh().bold_line_style(&BLACK.mix(0.2)).light_line_style(&TRANSPARENT).draw().unwrap();    
+                mem_chart.configure_mesh().bold_line_style(&BLACK.mix(0.2)).light_line_style(&TRANSPARENT).draw().unwrap();
                 mem_chart.draw_series(mem_data.iter().zip(mem_data.iter().skip(1)).map(
                     |(&(x0, y0), &(x1, y1))| {
                         PathElement::new(
