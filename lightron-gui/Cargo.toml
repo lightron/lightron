@@ -7,7 +7,7 @@ build = "build.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fltk = {version = "1.0.1", features = ["no-pango","system-libpng"]}
+fltk = {version = "1.4"}
 toml = "0.5.8"
 serde_derive = "1.0.125"
 serde = "1.0.125"
